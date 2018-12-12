@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-jdownloader" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+
+    <name>JDownloaderPlugin</name>
+
+    <js-module name="JDownloaderPlugin" src="www/JDownloaderPlugin.js">
+        <clobbers target="JDownloaderPlugin" />
+    </js-module>
+
+    <platform name="ios">
+
+        <hook type="after_plugin_add" src="hooks/addEmbedded.js" />
+        <hook type="after_plugin_add" src="hooks/add-swift-support.js" />
+
+        <config-file parent="/*" target="config.xml">
+            <feature name="JDownloaderPlugin">
+                <param name="ios-package" value="JDownloaderPlugin" onLoad="true" />
+            </feature>
+        </config-file>
+
+        <!--Bridging-Header-->
+        <header-file src="src/ios/JDownloader-Bridging-Header.h"/>
+
+        <!--CDVPlugin class-->
+        <source-file src="src/ios/JDownloaderPlugin.swift"/>
+
+        <framework src="src/ios/JDownloader.framework" custom="true" embed="true"/>
+
+    </platform>
+
+
+    </plugin>
